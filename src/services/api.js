@@ -39,7 +39,27 @@ export const fetchSeries = async () => {
         const rez = await response.json();
         return rez;
     }catch(error){
-        console.error('Error fetching movies:', error);
+        console.error('Error fetching series:', error);
         throw error;
     }
 }
+
+export const fetchDetails = async (id) => {
+    try{
+        const response = await fetch(API_BASE_URL_MOVIES + `/${id}?language=en-US`, optionsMovies);
+        if (!response.ok) {
+            throw new Error('Network response was not valid');
+        }
+        const rez = await response.json();
+        console.log("Details fetched successfully:", rez);
+
+        const movie = rez.results.find(movie => movie.id.toString() === id);
+        if (movie) {
+            console.log("Movie found:", movie);
+            return movie;
+        }
+        
+    }catch(error){
+        console.error("There has been an error",error);
+        throw error;
+    }}

@@ -29,13 +29,15 @@ if (loading){
 return (
     
     <div>
-        <h1>Most popular Movies</h1>
+        <h1 className="headline">Most popular Movies</h1>
         <div className = "card-container">
             {movie.map((item) => (
                 <div key={item.id} className="card">
                     <Link to={`/movie/${item.id}`}>
-                    <h2>{item.original_title}</h2>
+                    <h2 className="headline">{item.original_title}</h2>
+                    <div className="image-container">
                     <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.name} />
+                    </div>
                     </Link>
                 </div>
             ))}
