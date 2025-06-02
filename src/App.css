@@ -36,7 +36,7 @@
     transform: rotate(360deg);
   }
 }
-.movie-card-container {
+.card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
@@ -44,7 +44,7 @@
     align-items: stretch;
 
 }
-.movie-card{
+.card{
   border-radius: 10px;
   padding: 10px;
   text-align: center;
@@ -53,6 +53,6 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.movie-card:hover {
+.card:hover {
   transform: scale(1.05);
 }

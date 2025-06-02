@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { fetchMovies } from "../services/api";
+import { Link} from "react-router-dom";
 
 const MovieList = () => {
     const [ movie , setmovies] = useState([]);
@@ -28,13 +29,14 @@ if (loading){
 return (
     
     <div>
-        <h1>Movie list</h1>
-        <div className = "movie-card-container">
+        <h1>Most popular Movies</h1>
+        <div className = "card-container">
             {movie.map((item) => (
-                <div key={item.id} className="movie-card">
-                    <h2>{item.name}</h2>
-    
+                <div key={item.id} className="card">
+                    <Link to={`/movie/${item.id}`}>
+                    <h2>{item.original_title}</h2>
                     <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.name} />
+                    </Link>
                 </div>
             ))}
         </div>
