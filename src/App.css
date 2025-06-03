@@ -55,6 +55,7 @@ body{
   display: grid;
   padding: 20px;
   align-items: center;
+  place-items: center;
   background-color: white;
   max-width: 800px;
   margin: auto;
