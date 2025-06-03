@@ -3,7 +3,7 @@ const optionsSeries = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZWEzNDkyOTBkNDZjMGMwMDk0ZGJiODkwZTI1NTI0NiIsIm5iZiI6MTc0ODg2ODExMy4zMDU5OTk4LCJzdWIiOiI2ODNkOWMxMTI3MGJhNWFhMDFmZGI0MmQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.AMB8qLCzzBhCUlrOhZSA1MeiAjH6CsaxmTmUSITp79E'
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkN2Y5ODRkM2RmMjhmODE3MDg4MmMwMzE4NWEwNmFlMSIsIm5iZiI6MTc0ODg2ODExMy4zMDU5OTk4LCJzdWIiOiI2ODNkOWMxMTI3MGJhNWFhMDFmZGI0MmQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.NXZ7ZQIYmWaUGYw6mW0PqmNcdITgDlidAsBILazqrME'
   }
 };
 const API_BASE_URL_MOVIES = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US';
@@ -12,8 +12,8 @@ const optionsMovies = {
     method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZWEzNDkyOTBkNDZjMGMwMDk0ZGJiODkwZTI1NTI0NiIsIm5iZiI6MTc0ODg2ODExMy4zMDU5OTk4LCJzdWIiOiI2ODNkOWMxMTI3MGJhNWFhMDFmZGI0MmQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.AMB8qLCzzBhCUlrOhZSA1MeiAjH6CsaxmTmUSITp79E'
-  }
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkN2Y5ODRkM2RmMjhmODE3MDg4MmMwMzE4NWEwNmFlMSIsIm5iZiI6MTc0ODg2ODExMy4zMDU5OTk4LCJzdWIiOiI2ODNkOWMxMTI3MGJhNWFhMDFmZGI0MmQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.NXZ7ZQIYmWaUGYw6mW0PqmNcdITgDlidAsBILazqrME'
+}
 }
 
 export const fetchMovies = async () => {
@@ -62,4 +62,8 @@ export const fetchDetails = async (id) => {
     }catch(error){
         console.error("There has been an error",error);
         throw error;
-    }}
+    }
+}
+
+
+    
