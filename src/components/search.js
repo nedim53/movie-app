@@ -1,17 +1,17 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { fetchMovies } from "../services/api"; 
+import { fetchMovies, fetchSearch } from "../services/api"; 
 
 function Search(){
     const [searchTerm, setsearchTerm] = useState('');
     const [searchResults, setsearchResults] = useState([]);
-    const [allMovies, setAllMovies] = useState([]); 
+    //const [allMovies, setAllMovies] = useState([]); 
 
     useEffect(() => {
         const fetchMovie = async() => {
             try {
                 const res = await fetchMovies();
-                setAllMovies(res.results); 
+                //setAllMovies(res.results); 
                 setsearchResults(res.results);
                 console.log("Movies fetched successfully:", res.results);
             } catch (error) {
@@ -25,30 +25,30 @@ function Search(){
 
     const handleSearch = (event) => {
         setsearchTerm(event.target.value);
+        console.log("Search term:", event.target.value);
     }
 
-    const filterSearch = () => {
-        if (searchTerm.trim() === '') {
-            setsearchResults([]);
-            return;
-        }
-
-        
-
-        const results = allMovies.filter(item =>
-            item.title.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        console.log("Search term:", searchTerm);
-        console.log("Results test here",results);
-        setsearchResults(results);
+    const filterSearch = async () => {
+    if (searchTerm.trim() === '') {
+        setsearchResults([]);
+        return;
     }
 
+    try {
+        const data = await fetchSearch(searchTerm);
+        setsearchResults(data); // jer fetchSearch već vraća data.results
+    } catch (error) {
+        setsearchResults([]);
+    }
+};
 
-    const handleSubmit = (event) => {
+
+
+    const handleSubmit = async (event) => {
             event.preventDefault();
             filterSearch();
         }
-
+        
     return(
         <div className="search-container">
             <form onSubmit={handleSubmit}>
@@ -57,12 +57,12 @@ function Search(){
                 placeholder="Search..."
                 value={searchTerm}
                 onChange={handleSearch}
-
+                onKeyUp={handleSubmit}
             />
             <button type="submit">Search up</button>
             </form>
             
-            <div className="search-results">
+           <div className="search-results">
                 {searchResults.map((item) => (
                     <div key={item.id} className="search-item">
                         <h2>{item.title}</h2>
@@ -70,10 +70,12 @@ function Search(){
                     </div>
                 ))}
             </div>
+
         </div>
     )
-
-
 }
+
+
+
 
 export default Search;

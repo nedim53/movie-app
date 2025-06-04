@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 
 const App = () =>{
   return (
+        console.log("api key", process.env.REACT_APP_API),
   <div>
     <BrowserRouter>
     <Navbar />
