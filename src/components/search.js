@@ -1,17 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { fetchMovies, fetchSearch, fetchSeries } from "../services/api"; 
-import useTypeFetch from "../hooks/useTypeFetch.js";
+import useTypeFetchh from "../hooks/useTypeFetch.js";
 
 function Search(){
     const [searchTerm, setsearchTerm] = useState('');
     const [searchResults, setsearchResults] = useState([]);
-    //const [allMovies, setAllMovies] = useState([]); 
-    const type = useTypeFetch(); 
+    const type = useTypeFetchh(); 
 
     useEffect(() => {
         const fetchContent = async() => {
-    if (type === "tv") {
+    if (!searchTerm || searchTerm.trim() === '') {
+            setsearchResults([]);
+            return;
+        }
+    if (type === "tv" ) {
         try{
             const res = await fetchSeries();
             setsearchResults(res.results);
@@ -23,7 +26,6 @@ function Search(){
             const res = await fetchMovies();
             //setAllMovies(res.results); 
             setsearchResults(res.results);
-            console.log("Movies fetched successfully:", res.results);
         } catch (error) {
             console.error("Error while fetching movies:", error);
         }
@@ -32,12 +34,11 @@ function Search(){
         }
 
         fetchContent(); 
-    }, [type]);
+    }, [type,searchTerm]);
 
 
     const handleSearch = (event) => {
         setsearchTerm(event.target.value);
-        console.log("Search term:", event.target.value);
     }
 
     const filterSearch = async () => {
@@ -83,7 +84,7 @@ function Search(){
                 onChange={handleSearch}
                 onKeyUp={handleSubmit}
             />
-            <button type="submit">Search up</button>
+            <button className="search-button" type="submit">Search up</button>
             </form>
             
            <div className="search-results">

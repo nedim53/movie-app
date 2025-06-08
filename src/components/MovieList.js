@@ -6,25 +6,39 @@ import { Link} from "react-router-dom";
 const MovieList = () => {
     const [ movie , setmovies] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [page , setPage] = useState(1);
 
+    
+
+  useEffect(() => {
+
+  const loadMovies = async (pageNumber) => {
+    setLoading(true);
+    try {
+      const result = await fetchMovies(pageNumber);
+    setmovies((prevMovies) => {
+        const existingIds = new Set(prevMovies.map(m => m.id));
+        const newMovies = result.results.filter(movie => !existingIds.has(movie.id));
+        return [...prevMovies, ...newMovies];
+      });      setLoading(false);
+    } catch (error) {
+      console.error("Error while fetching movies:", error);
+      setLoading(false);
+    }
+  };
+    loadMovies(page);
+    }, [page]);
+    
     useEffect(() => {
-        fetchMovies()
-        .then((result) => {
+        const handleScroll = () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 && !loading) {
+                setPage((prevPage) => prevPage + 1);
+            }};
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [loading]);
 
-            setmovies(result.results);
-            setLoading(false);
-            console.log("Movies fetched successfully:", result);
-            
-        })
-        .catch((error) => {
-            console.error("Error while finding movies:",error);
-            setLoading(false);
-        })
-    } ,[]);
 
-if (loading){
-    return <h1>Loading...</h1>
-}
 
 return (
     
@@ -42,6 +56,11 @@ return (
                 </div>
             ))}
         </div>
+
+        {/*}<button
+        onClick={handleLoadMore}
+        >Load more</button> */}
+        {loading && <h1>Loading...</h1>}
     </div>
     );
 

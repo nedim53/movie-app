@@ -187,4 +187,17 @@ body{
 .search-results img:hover {
   transform: scale(1.01);
 }
-
+.search-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #B0DB9C;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.search-button:hover {
+  background-color: #82f74f;
+  transform: scale(1.05);
+}

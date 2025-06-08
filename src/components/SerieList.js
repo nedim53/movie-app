@@ -6,26 +6,40 @@ import { Link } from "react-router-dom";
 const SerieList = () => {
     const [series, setseries] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [ page , setpage] = useState(1);
 
-
+    
     useEffect(() => {
-        fetchSeries()
-        .then((res) => {
-
-            setseries(res.results);
+    
+    const loadSeries = async (pagenmbr) => {
+        setLoading(true);
+        try{
+            const result = await fetchSeries(pagenmbr);
+            setseries((previousSeries) => {
+                const existingIds = new Set(previousSeries.map(s => s.id));
+                const newSeries = result.results.filter(series =>!existingIds.has(series.id));
+                return [...previousSeries, ...newSeries];
+            });
             setLoading(false);
-            console.log("Series are fetched !", res);
-        })
-        .catch((error) => {
-            console.error("Error while collecting series:",error);
+        }catch(error){
+            console.error(error);
             setLoading(false);
-        })
+        }
+    };
+    loadSeries(page);
+},[page]);
 
-    }, []);
+useEffect(() => {
+    const handleScroll = () => {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 && !loading) {
+            setpage((prevPage) => prevPage + 1);
+        }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+}, [loading]);
 
-    if(loading){
-        return <h1>Loading...</h1>
-    }
+
 
     return (
         <div>
@@ -43,6 +57,11 @@ const SerieList = () => {
                 ))}
 
             </div>
+          {/*}  <button
+            onClick={handleLoadMore}>
+                Load More
+            </button> */}
+            {loading && <h1>Loading...</h1>}
         </div>
     )
 }
