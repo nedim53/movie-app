@@ -6,7 +6,7 @@ const Navbar =() => {
     return(
         <nav className="navbar">
         <Link to = "/">Movies</Link>
-        <Link to = "/series">Tv Shows</Link>
+        <Link to = "/tv">Tv Shows</Link>
           (<Search />)
     
         </nav>

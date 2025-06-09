@@ -30,7 +30,7 @@ const Details = () => {
         return <h1>Loading...</h1>;
     }
 if (!details) {
-        return <h1>Movie not found.</h1>;
+        return <h1>Content not found.</h1>;
     }
     return (
          <div className="detail-container">
