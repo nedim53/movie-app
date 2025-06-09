@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchDetails } from "../services/api";
 import { useParams} from "react-router-dom";
 
+
 const Details = () => {
 
     const { id } = useParams();

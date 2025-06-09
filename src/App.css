@@ -146,3 +146,45 @@ body{
   font-size: 2rem;
   text-align: center;
 }
+
+.search-container {
+  display: grid;
+  justify-content: center;
+  margin: 20px;
+}
+.search-container input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #333;
+  border-radius: 10px;
+  width: 300px;
+}
+.searhc-item{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+.search-results{
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  border: #f4f4f4 1px solid;
+
+  
+}
+.search-results img{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.search-results img:hover {
+  transform: scale(1.01);
+}
+

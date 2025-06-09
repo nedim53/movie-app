@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 
 const App = () =>{
   return (
+        console.log("api key", process.env.REACT_APP_API),
   <div>
     <BrowserRouter>
     <Navbar />
@@ -15,6 +16,7 @@ const App = () =>{
       <Route path="/" element={<MovieList />} />
       <Route path="/series" element={< SerieList />} />
       <Route path="/movie/:id" element={<Details />} /> 
+      <Route path="/series/:id" element={<Details />} />
       </Routes>
     </BrowserRouter>
   </div>
