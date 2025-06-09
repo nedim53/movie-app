@@ -29,7 +29,7 @@ useEffect(() => {
 
   return pageNumber === 1 ? newItems : [...prevItems, ...filteredItems];
 });
-
+  setLoading(false);
         
     } catch (error) {
       console.error("Error while fetching content:", error);
