@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                          // Kompatibilnost sa novim JS funkcijama
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],   // Potrebno za rad sa browser API-jem i modernim JS
+    "allowJs": true,                             // Dozvoljava korišćenje .js fajlova
+    "skipLibCheck": true,                        // Preskače proveru .d.ts fajlova (brže)
+    "esModuleInterop": true,                     // Omogućava default import iz CommonJS modula
+    "allowSyntheticDefaultImports": true,        // Omogućava default import čak i kad modul nema default export
+    "strict": true,                              // Uključuje sve stroge opcije TypeScript-a
+    "forceConsistentCasingInFileNames": true,    // Osetljivost na velika/mala slova u importima
+    "module": "ESNext",                          // Savremeni JS moduli
+    "moduleResolution": "Node",                  // Node-style rešavanje modula
+    "resolveJsonModule": true,                   // Omogućava import JSON fajlova
+    "isolatedModules": true,                     // Svaki fajl se tretira kao zaseban modul
+    "noEmit": true,                              // Ne generiše JS fajlove prilikom kompilacije
+    "jsx": "react-jsx"                           // JSX transformacija za React 17+
+  },
+  "include": ["src"],                            // Uključi sve fajlove u `src/`
+  "exclude": ["node_modules"]                    // Isključi node_modules
+}
