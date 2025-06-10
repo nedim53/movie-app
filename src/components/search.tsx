@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, KeyboardEvent } from "react";
 import { useState, useEffect } from "react";
 import {  fetchSearch } from "../services/api"; 
-import useTypeFetchh from "../hooks/useTypeFetch";
+
 
 interface SearchItem {
   id: number;
@@ -10,10 +10,16 @@ interface SearchItem {
   poster_path?: string;
 }
 
-function Search(){
+
+function getTypeFromPath(path: string): "tv" | "movie" {
+  return path.includes("/tv") ? "tv" : "movie";
+}
+
+function Search({type = getTypeFromPath(window.location.pathname)}) {
     const [searchTerm, setsearchTerm] = useState<string>("");
     const [searchResults, setsearchResults] = useState<SearchItem[]>([]);
-    const type = useTypeFetchh(); 
+    
+
 
     useEffect(() => {
         const fetchContent = async() => {

@@ -1,16 +1,25 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { fetchDetails } from "../services/api";
-import { useParams} from "react-router-dom";
-import useTypeFetchh from "../hooks/useTypeFetch";
+import { useParams } from "react-router-dom";
+
+interface DetailsData {
+    id: number;
+    title?: string;
+    name?: string;
+    overview?: string;
+    poster_path?: string;
+    relese_date?: string;
+    popularity?: number;
+    vote_average?: number;
+}
+
 
 const Details = () => {
 
-    const { id } = useParams();
-    const [details, setDetails] = useState(null);
+const [details, setDetails] = useState<DetailsData | null>(null);
     const [loading, setLoading] = useState(true);
-
-    const type = useTypeFetchh();
+    const { type,id} = useParams();
 
     useEffect(() => {
         setLoading(true);
@@ -32,9 +41,14 @@ const Details = () => {
 if (!details) {
         return <h1>Content not found.</h1>;
     }
+
+    const getTitle = () =>{
+        return details.title || details.name || "No title available";
+
+    }
     return (
          <div className="detail-container">
-            <h1>{details.title ? details.title : details.name }</h1>
+            <h1>{getTitle() }</h1>
             <p>{details.overview ? details.overview : "No description available"}</p>
             <p>{details.relese_date}</p>
             <p>Popularity: {details.popularity}</p>

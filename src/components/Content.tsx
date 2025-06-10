@@ -5,8 +5,8 @@ interface ContentListProps {
   type: "movie" | "tv";
 }
 
-const ContentListElements: React.FC<ContentListProps> = ({ type }) => {
-  const getTitle = () => {
+const ContentListElements= ({type}: ContentListProps) => {
+const getTitle = () => {
     return type === "movie" ? "Most Popular Movies" : "Most Popular TV Shows";
   };
 
